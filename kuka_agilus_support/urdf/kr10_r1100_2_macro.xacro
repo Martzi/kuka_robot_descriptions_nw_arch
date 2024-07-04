@@ -3,6 +3,7 @@
   <!-- include helper xacros -->
   <xacro:include filename="$(find kuka_agilus_support)/urdf/kr_agilus_ros2_control.xacro"/>
   <xacro:include filename="$(find kuka_agilus_support)/urdf/kr_agilus_transmission.xacro"/>
+  <xacro:include filename="$(find kuka_controller_description)/urdf/kr_c5_controller.xacro"/>
   <xacro:include filename="$(find kuka_resources)/urdf/common_materials.xacro"/>
   <xacro:macro name="kuka_kr10_r1100_2_robot" params="client_ip client_port prefix use_fake_hardware roundtrip_time *origin">
     <!-- ros2 control instance -->
@@ -183,5 +184,15 @@
       <origin rpy="0 ${pi} -0.0" xyz="0.0 0.0 -0.09"/>
       <parent link="${prefix}link_6"/>
     </joint>
+    <!-- kr c5 controller frame  -->
+    <link name="${prefix}kr_c5_controller"/>
+    <joint name="${prefix}base-controller" type="fixed">
+      <origin xyz="2 2 0" rpy="0 0 0"/>
+      <parent link="${prefix}base"/>
+      <child link="${prefix}kr_c5_controller"/>
+    </joint>
+
+    <xacro:kr_c5_controller parent="${prefix}kr_c5_controller"/>
+
   </xacro:macro>
 </robot>
