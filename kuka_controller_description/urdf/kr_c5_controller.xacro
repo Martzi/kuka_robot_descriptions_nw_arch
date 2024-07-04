@@ -1,0 +1,327 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro"
+       xmlns:device-layer="urn:ietf:params:xml:ns:yang:device-layer"
+       xmlns:network-layer="urn:ietf:params:xml:ns:yang:network-layer"
+       xmlns:ietf-network="urn:ietf:params:xml:ns:yang:ietf-network"
+       name="kr_c5_controller">
+
+  <xacro:include filename="$(find interface_description)/urdf/usb30.urdf.xacro"/>
+  <xacro:include filename="$(find interface_description)/urdf/usb20.urdf.xacro"/>
+  <xacro:include filename="$(find interface_description)/urdf/cat6.urdf.xacro"/>
+
+  <xacro:macro name="kr_c5_controller" params="parent name:=kr_c5_controller L2_network_id:=network_level L1_network_id:=device_level L2_id:=kr_c5_controller_L2 L1_id:=kr_c5_controller_L1">
+    <xacro:property name="M_PI" value="3.1415926535897931" />
+
+    <joint name="kr_c5_controller_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}" />
+      <child link="kr_c5_controller_link" />
+    </joint>
+
+    <link name="kr_c5_controller_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://kuka_controller_description/meshes/kr_c5_micro/visual/KR_C5_micro_SYB-Perf.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+        <!-- <material name="plastic"/> -->
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://kuka_controller_description/meshes/kr_c5_micro/collision/KR_C5_micro_SYB-Perf.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- ethernet-0 -->
+    <joint name="kr_c5_controller_ethernet0_frame" type="fixed">
+        <parent link="kr_c5_controller_link"/>
+        <child link="kr_c5_controller_ethernet0_link"/>
+            <!--  balra  melyseg  magassag -->
+        <origin xyz="-0.065 -0.14 0.04" rpy="1.57 0 0"/>
+    </joint>
+
+    <link name="kr_c5_controller_ethernet0_link">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="file://$(find interface_description)/meshes/rj45-female.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+    </visual>
+
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="file://$(find interface_description)/meshes/rj45-female.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+    </collision>
+    </link>
+
+    <!-- ethernet-1 -->
+    <joint name="kr_c5_controller_ethernet1_frame" type="fixed">
+        <parent link="kr_c5_controller_link"/>
+        <child link="kr_c5_controller_ethernet1_link"/>
+        <origin xyz="-0.049 -0.14 0.04" rpy="1.57 0 0"/>
+    </joint>
+
+    <link name="kr_c5_controller_ethernet1_link">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="file://$(find interface_description)/meshes/rj45-female.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+    </visual>
+
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="file://$(find interface_description)/meshes/rj45-female.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+    </collision>
+    </link>
+
+    <!-- ethernet-2 -->
+    <joint name="kr_c5_controller_ethernet2_frame" type="fixed">
+        <parent link="kr_c5_controller_link"/>
+        <child link="kr_c5_controller_ethernet2_link"/>
+        <origin xyz="-0.033 -0.14 0.04" rpy="1.57 0 0"/>
+    </joint>
+
+    <link name="kr_c5_controller_ethernet2_link">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="file://$(find interface_description)/meshes/rj45-female.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+    </visual>
+
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="file://$(find interface_description)/meshes/rj45-female.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+    </collision>
+    </link>
+
+    <!-- ethernet-3 -->
+    <joint name="kr_c5_controller_ethernet3_frame" type="fixed">
+        <parent link="kr_c5_controller_link"/>
+        <child link="kr_c5_controller_ethernet3_link"/>
+        <origin xyz="-0.017 -0.14 0.04" rpy="1.57 0 0"/>
+    </joint>
+
+    <link name="kr_c5_controller_ethernet3_link">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="file://$(find interface_description)/meshes/rj45-female.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+    </visual>
+
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="file://$(find interface_description)/meshes/rj45-female.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+    </collision>
+    </link>
+
+    <!-- ethernet-4 -->
+    <joint name="kr_c5_controller_ethernet4_frame" type="fixed">
+        <parent link="kr_c5_controller_link"/>
+        <child link="kr_c5_controller_ethernet4_link"/>
+        <origin xyz="-0.1034 -0.14 0.045" rpy="1.57 3.14 0"/>
+    </joint>
+
+    <link name="kr_c5_controller_ethernet4_link">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="file://$(find interface_description)/meshes/rj45-female.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+    </visual>
+
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="file://$(find interface_description)/meshes/rj45-female.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+    </collision>
+    </link>
+
+    <!-- ethernet-5 -->
+    <joint name="kr_c5_controller_ethernet5_frame" type="fixed">
+        <parent link="kr_c5_controller_link"/>
+        <child link="kr_c5_controller_ethernet5_link"/>
+        <origin xyz="-0.0874 -0.14 0.045" rpy="1.57 3.14 0"/>
+    </joint>
+
+    <link name="kr_c5_controller_ethernet5_link">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="file://$(find interface_description)/meshes/rj45-female.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+    </visual>
+
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="file://$(find interface_description)/meshes/rj45-female.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+    </collision>
+    </link>
+
+    <!-- ethernet-6 -->
+    <joint name="kr_c5_controller_ethernet6_frame" type="fixed">
+        <parent link="kr_c5_controller_link"/>
+        <child link="kr_c5_controller_ethernet6_link"/>
+        <origin xyz="-0.0714 -0.14 0.045" rpy="1.57 3.14 0"/>
+    </joint>
+
+    <link name="kr_c5_controller_ethernet6_link">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="file://$(find interface_description)/meshes/rj45-female.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+    </visual>
+
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="file://$(find interface_description)/meshes/rj45-female.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+    </collision>
+    </link>
+
+    <!-- ethernet-7 -->
+    <joint name="kr_c5_controller_ethernet7_frame" type="fixed">
+        <parent link="kr_c5_controller_link"/>
+        <child link="kr_c5_controller_ethernet7_link"/>
+        <origin xyz="-0.0554 -0.14 0.045" rpy="1.57 3.14 0"/>
+    </joint>
+
+    <link name="kr_c5_controller_ethernet7_link">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="file://$(find interface_description)/meshes/rj45-female.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+    </visual>
+
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="file://$(find interface_description)/meshes/rj45-female.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+    </collision>
+    </link>
+
+    <!-- USB-30-0 -->
+    <joint name="kr_c5_controller_usb30_0_frame" type="fixed">
+        <parent link="kr_c5_controller_link"/>
+        <child link="kr_c5_controller_usb30_0_link"/>
+        <origin xyz="0.057 -0.0018 0.015" rpy="0 -1.5707963 0"/>
+    </joint>
+
+    <link name="kr_c5_controller_usb30_0_link">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="file://$(find interface_description)/meshes/usb-A-female.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+    </visual>
+
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="file://$(find interface_description)/meshes/usb-A-female.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+    </collision>
+    </link>
+
+    <!-- USB-30-1 -->
+    <joint name="kr_c5_controller_usb30_1_frame" type="fixed">
+        <parent link="kr_c5_controller_link"/>
+        <child link="kr_c5_controller_usb30_1_link"/>
+        <origin xyz="0.057 -0.0018 0.015" rpy="0 -1.5707963 0"/>
+    </joint>
+
+    <link name="kr_c5_controller_usb30_1_link">
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="file://$(find interface_description)/meshes/usb-A-female.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+    </visual>
+
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+        <mesh filename="file://$(find interface_description)/meshes/usb-A-female.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+    </collision>
+    </link>
+
+    
+    <yang>
+        <!-- kuka kr c5 network topology -->
+        <ietf-network:networks>
+        <network-id>${L2_network_id}</network-id>
+        <network-layer:network-layer-topology><element>template</element></network-layer:network-layer-topology>
+        <supporting-network>
+            <network-ref>${L1_network_id}</network-ref>
+            <tf-parent>${parent}</tf-parent>
+        </supporting-network>
+        <node>
+            <node-id>${L2_id}</node-id>
+            <network-layer:network-layer-node-attributes>
+                <bandwidth>1</bandwidth> 
+                <delay>0</delay>
+            </network-layer:network-layer-node-attributes>
+            <supporting-node>
+            <network-ref>${L1_network_id}</network-ref>
+            <node-ref>${L1_id}</node-ref>
+            </supporting-node>
+            <xacro:cat6_L2 id="eth_0" supporting_network="${L1_network_id}" supporting_node="${L1_id}" supporting_tp="eth_0"/>
+            <xacro:cat6_L2 id="eth_1" supporting_network="${L1_network_id}" supporting_node="${L1_id}" supporting_tp="eth_1"/>
+            <xacro:cat6_L2 id="eth_2" supporting_network="${L1_network_id}" supporting_node="${L1_id}" supporting_tp="eth_2"/>
+            <xacro:cat6_L2 id="eth_3" supporting_network="${L1_network_id}" supporting_node="${L1_id}" supporting_tp="eth_3"/>
+            <xacro:cat6_L2 id="eth_4" supporting_network="${L1_network_id}" supporting_node="${L1_id}" supporting_tp="eth_4"/>
+            <xacro:cat6_L2 id="eth_5" supporting_network="${L1_network_id}" supporting_node="${L1_id}" supporting_tp="eth_5"/>
+            <xacro:cat6_L2 id="eth_6" supporting_network="${L1_network_id}" supporting_node="${L1_id}" supporting_tp="eth_6"/>
+            <xacro:cat6_L2 id="eth_7" supporting_network="${L1_network_id}" supporting_node="${L1_id}" supporting_tp="eth_7"/>
+            <xacro:usb30_L2 id="usb_0" supporting_network="${L1_network_id}" supporting_node="${L1_id}" supporting_tp="usb_0"/>
+            <xacro:usb30_L2 id="usb_1" supporting_network="${L1_network_id}" supporting_node="${L1_id}" supporting_tp="usb_1"/>
+        </node>
+        </ietf-network:networks>
+
+        <!-- kuka kr c5 network topology -->
+        <ietf-network:networks>
+        <network-id>${L1_network_id}</network-id>
+        <device-layer:device-layer-topology><element>template</element></device-layer:device-layer-topology>
+        <node>
+            <node-id>${L1_id}</node-id>
+            <device-layer:device-layer-node-attributes>
+            <device-type>router</device-type>
+            <phy-port-num>6</phy-port-num>
+            <wireless-access>1</wireless-access>
+            </device-layer:device-layer-node-attributes>
+            <xacro:cat6_L1 id="eth_0" connector_type="rj45" connector_format="female"/>
+            <xacro:cat6_L1 id="eth_1" connector_type="rj45" connector_format="female"/>
+            <xacro:cat6_L1 id="eth_2" connector_type="rj45" connector_format="female"/>
+            <xacro:cat6_L1 id="eth_3" connector_type="rj45" connector_format="female"/>
+            <xacro:cat6_L1 id="eth_4" connector_type="rj45" connector_format="female"/>
+            <xacro:cat6_L1 id="eth_5" connector_type="rj45" connector_format="female"/>
+            <xacro:cat6_L1 id="eth_6" connector_type="rj45" connector_format="female"/>
+            <xacro:cat6_L1 id="eth_7" connector_type="rj45" connector_format="female"/>
+            <xacro:usb30_L1 id="usb_0" connector_type="usb-std_A" connector_format="female"/>
+            <xacro:usb30_L1 id="usb_1" connector_type="usb-std_A" connector_format="female"/>
+        </node>
+        </ietf-network:networks>
+    </yang>  
+    
+  </xacro:macro>
+</robot>
