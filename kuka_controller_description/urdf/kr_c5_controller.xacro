@@ -8,6 +8,7 @@
   <xacro:include filename="$(find interface_description)/urdf/usb30.urdf.xacro"/>
   <xacro:include filename="$(find interface_description)/urdf/usb20.urdf.xacro"/>
   <xacro:include filename="$(find interface_description)/urdf/cat6.urdf.xacro"/>
+  <xacro:include filename="$(find kuka_controller_description)/urdf/materials.xacro"/>
 
   <xacro:macro name="kr_c5_controller" params="parent name:=kr_c5_controller L2_network_id:=network_level L1_network_id:=device_level L2_id:=kr_c5_controller_L2 L1_id:=kr_c5_controller_L1">
     <xacro:property name="M_PI" value="3.1415926535897931" />
@@ -24,7 +25,7 @@
         <geometry>
           <mesh filename="package://kuka_controller_description/meshes/kr_c5_micro/visual/KR_C5_micro_SYB-Perf.stl" scale="0.001 0.001 0.001" />
         </geometry>
-        <!-- <material name="plastic"/> -->
+        <material name="kuka_cb_color"/>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>

@@ -1,0 +1,25 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: kuka_agilus_support
+    relative_path: urdf/kr10_r1100_2.urdf.xacro
+  srdf:
+    relative_path: config/kr10_r1100_2.srdf
+  package_settings:
+    author_name: Marcell Balogh
+    author_email: marcell.balogh@ericsson.com
+    generated_timestamp: 1719995943
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
